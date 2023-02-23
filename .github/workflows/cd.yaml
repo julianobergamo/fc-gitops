@@ -29,3 +29,6 @@ jobs:
     - name: Update Kubernetes resources
       env:
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+      run: |
+        cd k8s
+        kustomize edit set image goserver=$DOCKER_USERNAME/webserver-go:gitops-$GITHUB_SHA
