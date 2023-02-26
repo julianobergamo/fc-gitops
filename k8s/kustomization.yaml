@@ -8,4 +8,4 @@ resources:
 images:
 - name: webserver-go
   newName: julianobergamo/webserver-go
-  newTag: gitops-v0.3.0
+  newTag: gitops-333f717ee7e71d552ef8711860132f415576db7c
