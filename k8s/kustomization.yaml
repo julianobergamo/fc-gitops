@@ -6,6 +6,6 @@ resources:
 - service.yaml
 
 images:
-- name: goserver
-  newName: wesleywillians/gitopsfc
-  newTag: 55f36cb53adbe095908594b2a2a67c54317ce556
+- name: webserver-go
+  newName: julianobergamo/webserver-go
+  newTag: gitops-v0.3.0
