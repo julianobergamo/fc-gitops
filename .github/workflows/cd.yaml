@@ -20,3 +20,27 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
         repository: ${{ secrets.DOCKER_USERNAME }}/webserver-go
         tags: ${{ github.sha }}, gitops-v0.2.0
+
+    - name: Setup Kustomize
+      uses: imranismail/setup-kustomize@v1
+      with:
+        kustomize-versions: "3.6.1"
+
+    - name: Update Kubernetes resources
+      env:
+        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+      run: |
+        cd k8s
+        kustomize edit set image webserver-go=$DOCKER_USERNAME/webserver-go:gitops-$GITHUB_SHA
+
+    - name: Commit
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git commit -am "Bump docker version"
+
+    - name: Push
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        repository: julianobergamo/webserver-go
