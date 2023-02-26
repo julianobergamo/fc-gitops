@@ -19,7 +19,7 @@ jobs:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
         repository: ${{ secrets.DOCKER_USERNAME }}/webserver-go
-        tags: ${{ github.sha }}, gitops-v0.2.0
+        tags: ${{ github.sha }}, gitops-v0.3.0
 
     - name: Setup Kustomize
       uses: imranismail/setup-kustomize@v1
@@ -43,4 +43,4 @@ jobs:
       uses: ad-m/github-push-action@master
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        repository: julianobergamo/webserver-go
+        repository: julianobergamo/fc-gitops
